@@ -1,3 +1,5 @@
+<h1>Basic number guessing game<h1>
+
 <p>This is a simple Python guessing game using basic python keywords.<p>
 <p>I learnt this course from Coursera, so I thank them.<p>
 
@@ -12,4 +14,4 @@ No graphics are needed, all you need is any version of Python 3 or above. You ca
 
 <p>Hope you enjoy this simple project! :)<p>
 
-<h1>-stryg<h1>
+<h2>-stryg<h2>
