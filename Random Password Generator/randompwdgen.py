@@ -6,50 +6,37 @@ Made by Strygwyr
 
 import random, string
 
-print('Hello, Welcome to Random Password Generator')
+print('Hello, Welcome to Random Password Generator.')
 
-length = int(input('\nEnter the length of the password: '))
+upper = list(string.ascii_uppercase)
+lower = list(string.ascii_lowercase)
+dig = list(string.digits)
+punct = list(string.punctuation)
+password = []
 
-strength = int(input('\nPlease enter the strength of the password: \n1. Weak\n2. Strong \n3.Very strong \n'))
+def generatePassword(passwordLength, useUppercase, useLowercase, useNumbers, usePunctuations, password):
+    charsToUse = []
+    if useUppercase == True:
+        charsToUse.extend(upper)
+    if useLowercase == True:
+        charsToUse.extend(lower)
+    if useNumbers == True:
+        charsToUse.extend(dig)
+    if useSymbols == True:
+        charsToUse.extend(punct)
 
-pwd = list()
+    while int(passwordLength) > len(password):
+        password.append(random.choice(charsToUse))
 
-def password(length, num=False, strength=True):
-    """Length of the password, num if you want a number,
-        strength (weak, strong, very strong)"""
-    lower = string.ascii_lowercase
-    upper = string.ascii_uppercase
-    letter = lower + upper
-    dig = string.digits
-    punct = string.punctuation
-    pwd = ''
-    if strength == '1':
-        if num:
-            length -= 2
-            for i in range(2):
-                pwd += random.choice(dig)
-        for i in range(length):
-            pwd += random.choice(lower)
+    random.shuffle(password)
+    return password
 
-    elif strength == '2':
-        if num:
-            length -= 2
-            for i in range(2):
-                pwd += random.choice(dig)
-        for i in range(length):
-            pwd += random.choice(letter)
+passwordLength = input('How long would you like the password to be?: ')
+useUppercase = bool(input('Do you require Uppercase letters? 1=Yes, Leave Blank=No: '))
+useLowercase = bool(input('Do you require Lowercase letters? 1=Yes, Leave Blank=No: '))
+useNumbers = bool(input('Do you require Numbers? 1=Yes, Leave Blank=No: '))
+useSymbols = bool(input('Do you require Symbols? 1=Yes, Leave Blank=No: '))
 
-    elif strength == '3':
-        ran = randint(2,4)
-        if num:
-            length -= ran
-            for i in range(ran):
-                pwd = random.choice(dig)
-        length -= ran
-        for i in range(ran):
-            pwd += random.choice(punct)
-        for i in range(length):
-            pwd += random.choice(letter)
-
-    random.shuffle(pwd)
-    return ''.join(pwd)        
+Plist = generatePassword(passwordLength, useUppercase, useLowercase, useNumbers, useSymbols, password)
+print("Your generated password is:")
+print(''.join(Plist))
